@@ -61,16 +61,19 @@ function handleCanvasClick(event){
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 }
-function handleSave(event){
-    const image = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.href = image;
-    link.donwload = "paintJS[:one:]";
-    link.click();
+function debugBase64(URL, filename){
+    var win = window.open();
+    win.document.write(`<a href="${URL}" download="${filename}" id="get_file"></a>`);
+    win.document.getElementById("get_file").click();
 }
-function handleCM(event){
-    console.log(event);
-
+function handleSave(event){
+    const image = canvas.toDataURL();
+    let filename = prompt("enter the filename", "download");
+    if (filename === null){
+        alert("User doesn't set a filename, Download canceled");
+        return ;
+    }
+    debugBase64(image, filename);
 }
 if(canvas){
     canvas.addEventListener("mousemove", onMouseMove);
@@ -78,7 +81,6 @@ if(canvas){
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
     canvas.addEventListener("click", handleCanvasClick);
-    canvas.addEventListener("contextmenu", handleCM);
 }
 Array.from(colors).forEach(
     c => c.addEventListener("click", handleColorClick));
@@ -90,5 +92,5 @@ if(mode){
     mode.addEventListener("click", handleMode);
 }
 if(saveBtn){
-    mode.addEventListener("click", handleSave);
+    saveBtn.addEventListener("click", handleSave);
 }
