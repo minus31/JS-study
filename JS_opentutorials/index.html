@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>Opentutorials</title>
+        
+    </head>
+
+    <body>
+       <h1><a href=""> Web - Javascript</a></h1> 
+        <input id='toggle' type="button" value="day" onclick=dayOrNight(this)>
+
+        <ol>
+        <li><a href=""> link</a></li>
+        <li><a href=""> link</a></li>
+        <li><a href=""> link</a></li>
+        </ol>
+        <!-- <div class="btnNight">
+       <input type="button" class="btn" value="night" onclick="
+            document.querySelector('body').style.backgroundColor='black';
+            document.querySelector('body').style.color='white';">
+       </div>
+       <div class="btnDay">
+       <input type="button" class="btn" value="day" onclick="
+       document.querySelector('body').style.backgroundColor='white';
+            document.querySelector('body').style.color='black';">
+        </div> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script>
+        // function setColor(c){
+        //     for (let i = 0; i < a_li.length; i++){
+        //             a_li[i].style.color = c;
+        //             }
+        // }
+        function dayOrNight(self){
+            const target = document.getElementById('toggle');
+            const body = document.querySelector('body');
+            const a_li = document.querySelectorAll('a');
+
+            // const tz = this.value;
+            if (self.value === 'night'){
+                self.value = 'day';
+                body.style.backgroundColor='white';
+                body.style.color='black';
+                for (let i = 0; i < a_li.length; i++){
+                    a_li[i].style.color = "blue";
+                    }
+            } else {
+                self.value = 'night'; 
+                body.style.backgroundColor='black';
+                body.style.color='white';
+                for (let i = 0; i < a_li.length; i++){
+                    a_li[i].style.color = "powderblue";
+                    }
+            }
+        }
+    </script>
+    </body>
+</html>
